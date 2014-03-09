@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Post date:</strong>
+  <%= @post.post_date %>
+</p>
+
+<p>
+  <strong>Post title:</strong>
+  <%= @post.post_title %>
+</p>
+
+<p>
+  <strong>Post content:</strong>
+  <%= simple_format(@post.post_content, {}, :sanitize => false).html_safe %>
+</p>
+
+<p>
+  <strong>Post status:</strong>
+  <%= @post.post_status %>
+</p>
+
+<p>
+  <strong>Comment status:</strong>
+  <%= @post.comment_status %>
+</p>
+
+<p>
+  <strong>Post name:</strong>
+  <%= @post.post_name %>
+</p>
+
+<p>
+  <strong>Post type:</strong>
+  <%= @post.post_type %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
