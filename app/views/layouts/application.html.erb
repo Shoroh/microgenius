@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Microgenius</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title><%= content_for?(:title) ? yield(:title) : "Microgenius.ru" %></title>
+  <%= include_gon %>
+  <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+
+<body>
+<div class="container">
+  <%= render "shared/menu" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% if controller?("posts") && action?("index") or controller?("posts") && action?("index_draft") %>
+        <div class="col-md-9" role="main">
+          <%= yield %>
+        </div>
+        <div class="col-md-3 sidebar">
+          <%= yield :sidebar %>
+        </div>
+    <% else %>
+        <div class="col-md-12 one_post">
+          <%= yield %>
+        </div>
+    <% end %>
+  </div>
+
+</div>
 
 </body>
 </html>
