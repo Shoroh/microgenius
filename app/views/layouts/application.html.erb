@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title><%= content_for?(:title) ? yield(:title) : "Microgenius.ru" %></title>
   <%= include_gon %>
+  <!-- fotorama.css & fotorama.js. -->
+  <link href="//fotorama.s3.amazonaws.com/4.5.0/fotorama.css" rel="stylesheet" data-turbolinks-track>
+  <!-- 2 KB -->
+
   <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
@@ -20,6 +24,13 @@
 
 <div class="container">
   <div class="row">
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= value %>
+        </div>
+    <% end %>
+
     <% if controller?("posts") && action?("index") or controller?("posts") && action?("index_draft") %>
         <div class="col-md-9" role="main">
           <%= yield %>
@@ -36,5 +47,25 @@
 
 </div>
 
+<div class="footer">
+  <% if current_user %>
+      <p><%= link_to 'Microgenius', logout_url, method: :delete %></p>
+  <% else %>
+      <a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Microgenius</a>
+
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+              <%= render 'sessions/login' %>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<script src="//fotorama.s3.amazonaws.com/4.5.0/fotorama.js" data-turbolinks-track></script>
+<!-- 9 KB -->
 </body>
 </html>

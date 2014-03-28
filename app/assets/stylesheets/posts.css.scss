@@ -1,3 +1,179 @@
 // Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// They will automatically be included in application.css.scss.
+// You can
+// use Sass (SCSS) here: http://sass-lang.com/
+
+// Базовые правила
+
+// Список постов с анонсами
+
+.index_post_body {
+  img {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+}
+
+.list_of_posts {
+  a {
+    color: #35741C;
+  }
+}
+
+.page_nav {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.btn-next {
+  color: #333333;
+  background-color: white;
+  border-color: #cccccc;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  &:hover, &:focus, &:active {
+    color: #333333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+  }
+}
+
+.btn-prev {
+  color: #333333;
+  background-color: white;
+  border-color: #cccccc;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  &:hover, &:focus, &:active {
+    color: #333333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+  }
+}
+
+.draft {
+  a {
+    background-color: lightgrey;
+  }
+}
+
+// Правила показа отдельного поста
+
+.one_post {
+  p {
+    margin-top: 10px;
+    max-width: 1000px;
+  }
+
+  img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+}
+
+a.anchor {
+  position: absolute;
+  left: -20px;
+  color: #b2bac2;
+  cursor: pointer;
+  &:link, &:visited, &:hover, &:focus, &:active {
+    outline: none !important;
+    text-decoration: none;
+  }
+}
+
+#disqus_thread {
+  // Ширина комментария
+  max-width: 1000px;
+}
+
+.index_post_tags {
+  a {
+    color: #b2bac2;
+    margin-right: 10px;
+    &:hover {
+      color: #5a6772;
+    }
+  }
+}
+
+// Разное
+
+img {
+  max-width: 100% !important;
+  max-height: 1000px !important;
+}
+
+.top-bar-section ul li > a {
+  color: #b2bac2 !important;
+  :hover {
+    color: #384047 !important;
+    background-color: #edeff0 !important;
+  }
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background-color: #edeff0 !important;
+}
+
+.name {
+  h1 {
+    a {
+      color: #384047 !important;
+    }
+  }
+}
+
+.button-group.round.index_post_nav {
+  width: 100%;
+  li {
+    width: 50%;
+    a {
+      width: 100%;
+    }
+  }
+
+}
+
+.index_post_one {
+  margin-bottom: 20px;
+}
+
+.year, .month {
+  width: 10%;
+}
+
+.day, .hour, .minute {
+  width: 10%;
+}
+
+#s2id_post_tag_list {
+  width: 100%;
+}
+
+.tag_cloud {
+  line-height: 2em;
+  .css1 {
+    font-size: 0.8em;
+  }
+  .css2 {
+    font-size: 1.2em;
+  }
+  .css3 {
+    font-size: 1.6em;
+  }
+  .css4 {
+    font-size: 2em;
+  }
+}
+
+.post_show_nav {
+  text-align: center;
+}
+

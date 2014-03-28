@@ -1,39 +1,54 @@
-<p id="notice"><%= notice %></p>
+<% content_for(:title, @post.post_title) %>
 
-<p>
-  <strong>Post date:</strong>
+<%= link_to 'Назад', :back %>
+
+<ul>Еще по теме:
+  <% @related_posts.each do |r_p| %>
+      <% unless r_p.post_title == @post.post_title %>
+          <li><%= link_to r_p.post_title, r_p %></li>
+      <% end %>
+  <% end %>
+</ul>
+
+<div class="">
   <%= @post.post_date %>
-</p>
+</div>
 
-<p>
-  <strong>Post title:</strong>
+<h1 class="">
   <%= @post.post_title %>
-</p>
+</h1>
 
-<p>
-  <strong>Post content:</strong>
-  <%= simple_format(@post.post_content, {}, :sanitize => false).html_safe %>
-</p>
+<div class="post_content">
+  <% if @post.retina and session[:retina] %>
+      <%= raw by_p(retinized(@post.post_content)) %>
+  <% else %>
+      <%= raw by_p(@post.post_content) %>
+  <% end %>
+</div>
 
-<p>
-  <strong>Post status:</strong>
-  <%= @post.post_status %>
-</p>
+<% if @post.comment_status %>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'microgenius'; // required: replace example with your forum shortname
+        var disqus_identifier = '<%= @post.post_name %>';
+        var disqus_title = '<%= @post.post_title %>';
+        var disqus_url = 'http://0.0.0.0:3000/posts/<%= @post.post_name %>';
 
-<p>
-  <strong>Comment status:</strong>
-  <%= @post.comment_status %>
-</p>
-
-<p>
-  <strong>Post name:</strong>
-  <%= @post.post_name %>
-</p>
-
-<p>
-  <strong>Post type:</strong>
-  <%= @post.post_type %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<% end %>
+<div data-no-turbolink>
+  <%= link_to 'Edit', edit_post_path(@post.id) %> |
+  <%= link_to 'Back', posts_path %>
+</div>

@@ -1,0 +1,25 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <%= nav_link 'Все подряд', root_path %>
+    <%= nav_link 'Путешествия', travel_path %>
+    <%= nav_link 'Черновики', draft_path %>
+    <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm-2">Тэги</a>
+
+      <div class="modal fade bs-example-modal-sm-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="tag_cloud">
+                <% tag_cloud Post.tag_counts.sort { |a, b| a.name <=> b.name }, %w{css1 css2 css3 css4} do |tag, css_class| %>
+                    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <%= retina_link %>
+  </ul>
+  <h3 class="text-muted"><%= link_to 'Microgenius', root_path %></h3>
+</div>

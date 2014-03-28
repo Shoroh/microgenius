@@ -10,7 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/javascripts/bootstrap.js
+
+//= require select2
+//= require select2_locale_"ru"
 //= require turbolinks
+//= require ckeditor/override
+//= require ckeditor/init
 //= require_tree .

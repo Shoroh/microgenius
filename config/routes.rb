@@ -1,5 +1,27 @@
 Microgenius::Application.routes.draw do
-  resources :posts
+  root 'posts#index'
+
+  concern :pageable do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+
+  controller :sessions do
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  # resources :users # Перекрываем пути к юзерам.
+
+  resources :posts, path: 'all', concerns: :pageable
+  resource 'tags/:tag', to: 'posts#index', as: :tag, concerns: :pageable
+
+
+  get 'travel/', to: 'posts#index_travel'
+  get 'draft/', to: 'posts#index_draft'
+  get '/:year/(:month)', to: 'posts#index_by_date'
+  post 'retina/', to: 'posts#retina'
+
+  mount Ckeditor::Engine => '/ckeditor'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
