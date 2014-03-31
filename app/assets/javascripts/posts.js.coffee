@@ -18,12 +18,10 @@ $ ->
     width: '100%'
   return
 
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
-$ ->
-  $(".fotorama").fotorama()
-  return
 
 $(document).on "click", ".spoiler-btn", (e) ->
   e.preventDefault()
@@ -34,8 +32,4 @@ $(document).on "click", "#tag_cloud_edit a", (e) ->
   e.preventDefault()
   txt = $(this).text()
   $("#post_tag_list").select2 "val", $("#post_tag_list").select2("val").concat(txt)
-  return
-
-$ ->
-  $(".fotorama").fotorama()
   return

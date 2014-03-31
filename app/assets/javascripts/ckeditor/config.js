@@ -39,8 +39,7 @@ CKEDITOR.editorConfig = function (config) {
     config.defaultLanguage = 'ru';
     config.enterMode = CKEDITOR.ENTER_P;
     config.language = 'ru';
-    config.width = '1010px';
     config.height = '650px';
-    config.extraPlugins = 'divarea';
+    //config.extraPlugins = 'divarea';
     config.allowedContent = true;
 };
