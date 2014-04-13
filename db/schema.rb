@@ -11,21 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307171800) do
+ActiveRecord::Schema.define(version: 20140405102611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "posts", force: true do |t|
-    t.datetime "post_date"
-    t.string   "post_title"
-    t.text     "post_content"
-    t.string   "post_status"
-    t.string   "comment_status"
-    t.string   "post_name"
-    t.string   "post_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.timestamp "post_date", precision: 6
+    t.string "post_title"
+    t.text "post_content"
+    t.string "post_status"
+    t.string "post_name"
+    t.string "post_type"
+    t.timestamp "created_at", precision: 6
+    t.timestamp "updated_at", precision: 6
+    t.boolean "retina", default: false
+    t.boolean "comment_status", default: false
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "geotag", default: false
+  end
+
+  create_table "taggings", force: true do |t|
+    t.integer "tag_id"
+    t.integer "taggable_id"
+    t.string "taggable_type"
+    t.integer "tagger_id"
+    t.string "tagger_type"
+    t.string "context", limit: 128
+    t.timestamp "created_at", precision: 6
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.timestamp "created_at", precision: 6
+    t.timestamp "updated_at", precision: 6
   end
 
 end

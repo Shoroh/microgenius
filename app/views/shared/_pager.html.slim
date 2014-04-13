@@ -1,0 +1,9 @@
+.row.page_arrows
+  .col-md-2
+    = link_to_previous_page @posts, '<span class="glyphicon glyphicon-hand-left"></span>'.html_safe do
+      span
+  .col-md-8
+    p.center= page_entries_info @posts  if params[:page]
+  .col-md-2
+    = link_to_next_page @posts, '<span class="glyphicon glyphicon-hand-right"></span>'.html_safe, class: 'pull-right' do
+      span

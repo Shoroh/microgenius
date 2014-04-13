@@ -18,17 +18,34 @@ gem 'coffee-rails', '~> 4.0.0'
 # Nice looking url's
 gem 'babosa'
 
+gem 'acts-as-taggable-on'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'select2-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# Делаем постраничный вывод с
+gem 'kaminari'
+
+# Иконки для Foundation from Zurb
+gem 'foundation-icons-sass-rails'
+
+# Гем для передачи переменных в JS на фронт
+gem 'gon'
+
+# Редактор постов
+gem 'ckeditor'
+
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+gem 'slim'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -36,7 +53,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -46,3 +63,10 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'rails-i18n'
+
+# Карты и геометки
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'underscore-rails'

@@ -1,0 +1,14 @@
+<div class="index_post">
+  <p><%= params[:year] %> — <%= params[:month] %></p>
+
+  <p><%= @posts.count %> — постов написано за этот период</p>
+  <table class="table table-striped">
+    <% @posts.each do |post| %>
+        <tr>
+          <td <%= "class=success" if post.post_status == 'publish' %>><%= link_to post.post_title, post %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <% if current_user %>
+        <li class="<%= 'menu_item_active' if current_page?(new_post_url) %>"><%= link_to 'Написать пост', new_post_path %></li>
+        <%= nav_link 'Черновики', draft_path %>
+    <% end %>
+    <%= nav_link 'Путешествия', travel_path %>
+
+    <li class=<%= 'menu_item_active' if params[:tag] %>>
+      <a href="" data-toggle="modal" data-target=".bs-example-modal-sm-2">Тэги</a>
+    </li>
+    <%= render 'shared/settings' %>
+  </ul>
+  <h3 class="<%= (current_page?(root_path) ? 'menu_item_active' : 'text-muted') %>"><%= link_to 'Microgenius', root_path %></h3>
+</div>
+
+<%= render 'shared/tags_page' %>

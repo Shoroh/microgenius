@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/stylesheets/bootstrap.scss
+ *= require select2
+ *= require_tree .
+ *= require switchery.min
+ *= require social-likes_flat
+ */
+
+body {
+  position: relative;
+}
+
+.container {
+  //max-width: 1030px;
+  //min-width: 1030px;
+}
+
+.sidebar {
+  p {
+    text-align: center;
+  }
+}
+
+.next {
+  float: right !important;
+  width: 47% !important;
+}
+
+.prev {
+  float: left !important;
+  width: 47% !important;
+}
+
+/* Для спойлера */
+
+.spoiler-body {
+  display: none;
+}
+
+.spoiler-btn {
+  cursor: pointer;
+}
+
+.white_box {
+  background: #A6DCBC;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+

@@ -1,0 +1,23 @@
+- cache do
+  .index_post
+    - @posts.each do |post|
+      .index_post_single
+        small.index_post_data id=post.post_name
+          = l post.post_date.to_date, format: :long
+        h1
+          = link_to post.post_title, post
+          - if post.retina
+            span.glyphicon.glyphicon-eye-open.sup_retina
+          - if post.geotag
+            span.glyphicon.glyphicon-map-marker.sup_retina
+        - if current_user
+          .control.pull-right data-no-turbolink="true"
+            = link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_post_path(post.post_name)
+            = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, post, method: :delete, data: {confirm: 'Are you sure?'}
+        .index_post_body= raw cut_head(post)
+        .index_post_tags
+          = raw (post.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_path(t), class: ""}.join(" ")
+          = raw (post.geolocation_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_path(t), class: ""}.join(" ")
+    - content_for(:title, "Свежие посты")
+    - content_for :sidebar do
+      = render 'posts/index_sidebar'

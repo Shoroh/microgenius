@@ -1,0 +1,8 @@
+#my-affix.index_sidebar.hidden-sm.hidden-xs data-clampedwidth=".side"
+  .center
+    p Содержание
+  =render 'shared/pager'
+  ul.nav
+    - @posts.each do |post|
+      li
+        a href="##{post.post_name}" = post.post_title
