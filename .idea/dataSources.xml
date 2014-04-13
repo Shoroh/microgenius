@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1880047443">
+    <data-source source="LOCAL" name="Rails microgenius: development" uuid="363e02a1-e7b5-4ff8-915e-87542d8fb9c1">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:microgen</jdbc-url>
+      <user-name>shelestov</user-name>
+      <user-password>df98df99df9bdf9bdf9bdf93df9ddf92</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

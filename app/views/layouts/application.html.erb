@@ -2,7 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <%= content_for?(:head) ? yield(:head) : '' %>
+  <meta property="og:site_name" content="Microgenius.ru"/>
+  <meta property="og:locale" content="ru_RU"/>
 
   <title><%= content_for?(:title) ? yield(:title) : "Microgenius.ru" %></title>
   <%= include_gon %>
@@ -12,59 +15,64 @@
 
   <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript" data-turbolinks-track></script>
+  <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript' data-turbolinks-track></script>
+
 
   <%= csrf_meta_tags %>
+
 </head>
 
 
-<body>
-<div class="container">
-  <%= render "shared/menu" %>
-</div>
+<body data-spy="scroll" data-target=".index_sidebar">
+
 
 <div class="container">
+  <nav>
+    <%= render 'shared/header' %>
+  </nav>
+
+  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= value %>
+      </div>
+  <% end %>
+
   <div class="row">
-    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= value %>
-        </div>
-    <% end %>
-
     <% if controller?("posts") && action?("index") or controller?("posts") && action?("index_draft") %>
-        <div class="col-md-9" role="main">
+        <div class="col-md-9 col-sm-12">
           <%= yield %>
         </div>
-        <div class="col-md-3 sidebar">
+        <div class="col-md-3 side">
           <%= yield :sidebar %>
         </div>
     <% else %>
-        <div class="col-md-12 one_post">
+        <div class="col-lg-12 one_post">
           <%= yield %>
         </div>
     <% end %>
   </div>
 
-</div>
+  <div class="footer">
+    <% if current_user %>
+        <p><%= link_to '<span class="glyphicon glyphicon-lock"></span>'.html_safe, logout_url, method: :delete %></p>
+    <% else %>
+        <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm"><%= tag 'span', class: 'glyphicon glyphicon-lock' %></a>
 
-<div class="footer">
-  <% if current_user %>
-      <p><%= link_to 'Microgenius', logout_url, method: :delete %></p>
-  <% else %>
-      <a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Microgenius</a>
-
-      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-body">
-              <%= render 'sessions/login' %>
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <%= render 'sessions/login' %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
+</div>
 <script src="//fotorama.s3.amazonaws.com/4.5.0/fotorama.js" data-turbolinks-track></script>
 <!-- 9 KB -->
 </body>

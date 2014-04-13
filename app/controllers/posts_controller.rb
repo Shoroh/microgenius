@@ -1,29 +1,40 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authorize, only: [:edit, :destroy, :update, :index_draft]
 
   # GET /posts
   # GET /posts.json
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).page(params[:page])
+      @posts = Post.tagged_with(params[:tag]).order(post_date: :desc).page(params[:page])
     else
-      @posts = Post.order(post_date: :desc).page(params[:page])
+      @posts = Post.published.order(post_date: :desc).page(params[:page])
       @title = "Свежие посты"
     end
   end
 
   def index_travel
     if params[:tag]
-      @posts = Post.where(post_type: "travel").tagged_with(params[:tag]).page(params[:page])
+      @posts = Post.where(post_type: "travel").tagged_with(params[:tag])
     else
-      @posts = Post.where(post_type: "travel").order(post_date: :desc).page(params[:page])
+      @posts = Post.where(post_type: "travel").order(post_date: :desc)
       @title = "Свежие посты"
     end
-    render 'index'
+    render 'index_travel'
   end
 
-  # TODO Надо это или убрать или довести до ума, чтобы видно было только автору.
+  def map_finder
+    @posts_with_geo = Post.where(post_type: 'travel')
+    @hash = Gmaps4rails.build_markers(@posts_with_geo) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.json({:title => post.post_title})
+      marker.infowindow ('<a target="_blank" href="' + post_path(post) + '">' + post.post_title + '</a>')
+    end
+    render 'map_finder'
+  end
+
+  #
   def index_draft
     if params[:tag]
       @posts = Post.where(post_status: "draft").tagged_with(params[:tag]).page(params[:page])
@@ -63,7 +74,9 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @title = @post.post_title
-    @related_posts = Post.tagged_with(@post.tag_list, any: true).order(created_at: :desc).limit(6)
+    # Показываем похожие посты (имеющие совпадающие теги)
+    # @related_posts = Post.tagged_with(@post.tag_list, any: true).order(created_at: :desc).limit(6)
+    @related_posts_2 = @post.find_related_tags.limit(5)
   end
 
   # GET /posts/new
@@ -74,16 +87,34 @@ class PostsController < ApplicationController
     @post.post_content = "Тут будет текст"
     @post.post_type = "blog"
     @post.comment_status = 'closed'
+    @tag_list = []
+    @geolocation_list = []
+    Post.tag_counts_on(:tags).sort { |a, b| a.name <=> b.name }.each do |tag|
+      @tag_list << tag.to_s
+    end
+    gon.tag_list = @tag_list
+    Post.tag_counts_on(:geolocations).sort { |a, b| a.name <=> b.name }.each do |tag|
+      @geolocation_list << tag.to_s
+    end
+    gon.geolocation_list = @geolocation_list
+    @tag_list
+    @geolocation_list
   end
 
   # GET /posts/1/edit
   def edit
     @tag_list = []
+    @geolocation_list = []
     Post.tag_counts_on(:tags).sort { |a, b| a.name <=> b.name }.each do |tag|
       @tag_list << tag.to_s
     end
     gon.tag_list = @tag_list
+    Post.tag_counts_on(:geolocations).sort { |a, b| a.name <=> b.name }.each do |tag|
+      @geolocation_list << tag.to_s
+    end
+    gon.geolocation_list = @geolocation_list
     @tag_list
+    @geolocation_list
   end
 
   # POST /posts
@@ -136,6 +167,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:retina, :tag_list, :post_date, :post_title, :post_content, :post_status, :comment_status, :post_name, :post_type)
+      params.require(:post).permit(:geotag, :latitude, :longitude, :retina, :geolocation_list, :tag_list, :post_date, :post_title, :post_content, :post_status, :comment_status, :post_name, :post_type)
     end
 end

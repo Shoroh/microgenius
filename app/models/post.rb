@@ -1,7 +1,12 @@
 include PostsHelper
 class Post < ActiveRecord::Base
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
+
   # Добавляем теги к постам
   acts_as_taggable
+  acts_as_taggable_on :geolocations
 
   # Сколько постов на странице индекса?
   paginates_per 10
@@ -19,11 +24,23 @@ class Post < ActiveRecord::Base
   # Ссылка на пост тоже должна быть не длиньше 128, а также уникальной.
   validates :post_name, presence: true, length: {maximum: 128}, uniqueness: true
 
+  scope :published, -> {
+    where(post_status: 'publish').where('post_date <= ?', Time.zone.now)
+  }
+
   def to_param
     post_name
   end
 
   protected
+
+  def address_changed?
+    self.latitude.blank? and self.longitude.blank?
+  end
+
+  def address
+    self.geolocation_list.map { |t| t }.join(", ")
+  end
 
   def set_defaults
     if self.post_name.blank?

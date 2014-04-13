@@ -5,13 +5,26 @@ module PostsHelper
     self.to_slug.transliterate(:russian).normalize.to_s
   end
 
-  # Вычленяем анонс
+  # Вычленяем анонс для индекса
   def cut_head(post, key = '<!--more-->')
     output = post.post_content.split(key) # Делим пост на две части, анонс и основную.
     if output[1] # Если есть вторая часть, то добавляем в конце поста ссылку на полный пост:
-      output.first << link_to('Читать далее...', post, class: 'pull-right', target: '_blank') #делаем ссылку на полный пост
+      output.first << link_to('Читать далее <span class="glyphicon glyphicon-new-window"></span>'.html_safe, post, class: 'pull-right', target: '_blank') #делаем ссылку на полный пост
     end
     output.first # Выводим анонс.
+  end
+
+  # Вычленяем описание для социальных сетей
+  def cut_description(post, key = '</p>')
+    output = post.post_content.split(key) # Берем первый параграф
+    strip_tags(output.first) # Выводим анонс.
+  end
+
+  # Берем первую картинку поста для социальных сетей
+  def cut_image(post, key = 'src="')
+    output_1 = post.post_content.split(key)
+    output = output_1[1].split('"')
+    output[0].to_s # Выводим путь картинки.
   end
 
   # разбивка на параграфы — добавление к ним якорей
@@ -19,7 +32,7 @@ module PostsHelper
     output = Array.new
     pid = 1
     paragraphs = text.split('<p>') # Для разибвки используется тег <p>
-    paragraphs.delete_at(0)
+    paragraphs.delete_at(0) # Удаляем нулевой объект получившегося массива
     if paragraphs.count <= 3 # Если параграфов меньше 3-х, значит их разбивка не требуется.
       return text
     end

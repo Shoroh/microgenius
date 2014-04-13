@@ -21,6 +21,8 @@ module Microgenius
     config.i18n.default_locale = :ru
     config.i18n.enforce_available_locales = false
     I18n.config.enforce_available_locales = false
+    # config/application.rb
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     ActsAsTaggableOn.force_lowercase = true
 

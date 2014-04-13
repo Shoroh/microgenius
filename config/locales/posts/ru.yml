@@ -1,0 +1,22 @@
+ru:
+  helpers:
+    page_entries_info:
+     one_page:
+       display_entries:
+         zero: "Ничего не найдено"
+         one: "Показан <b>1</b> пост"
+         other: "Показаны <b>все %{count}</b> посты"
+         many: "Показаны <b>все %{count} постов</b>"
+         few: "Показаны <b>все %{count} поста</b>"
+     more_pages:
+       display_entries: "с %{first}&nbsp;по&nbsp;%{last} из %{total}"
+
+  draft_title: "Без названия"
+
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
+      truncate: "..."

@@ -1,10 +1,12 @@
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/javascripts/bootstrap.js
-//= require select2
-//= require select2_locale_"ru"
-//= require turbolinks
+//= require gmaps/google
+//= require underscore
 //= require ckeditor/override
 //= require ckeditor/init
+//= require switchery.min
+//= require select2
+//= require social-likes.min
+//= require_self
 //= require_tree .

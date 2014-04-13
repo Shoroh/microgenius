@@ -1,0 +1,111 @@
+// Сброс css для карт Гугл
+#map_canvas label
+  width: auto
+  display: inline
+
+#map_canvas img
+  max-width: none !important
+  height: auto !important
+  background: none !important
+  border: 0 !important
+  margin: 0 !important
+  padding: 0 !important
+
+// Список постов с анонсами
+
+.list_of_posts
+  a
+    color: #35741C
+
+.page_nav
+  margin-bottom: 30px
+  margin-top: 30px
+
+.btn-next
+  color: #333333
+  background-color: white
+  border-color: #cccccc
+  border-top-right-radius: 20px
+  border-bottom-right-radius: 20px
+  &:hover, &:focus, &:active
+    color: #333333
+    background-color: #ebebeb
+    border-color: #adadad
+
+.btn-prev
+  color: #333333
+  background-color: white
+  border-color: #cccccc
+  border-top-left-radius: 20px
+  border-bottom-left-radius: 20px
+  &:hover, &:focus, &:active
+    color: #333333
+    background-color: #ebebeb
+    border-color: #adadad
+
+.draft
+  a
+    background-color: lightgrey
+
+// Правила показа отдельного поста
+
+a.anchor
+  position: absolute
+  left: -20px
+  color: #b2bac2
+  cursor: pointer
+  &:link, &:visited, &:hover, &:focus, &:active
+    outline: none !important
+    text-decoration: none
+
+#disqus_thread
+  // Ширина комментария
+  max-width: 1000px
+
+.index_post_tags
+  a
+    color: #b2bac2
+    margin-right: 10px
+    &:hover
+      color: #5a6772
+
+// Разное
+
+.top-bar-section ul li > a
+  color: #b2bac2 !important
+  &:hover
+    color: #384047 !important
+    background-color: #edeff0 !important
+
+.top-bar-section li:not(.has-form) a:not(.button):hover
+  background-color: #edeff0 !important
+
+.name
+  h1
+    a
+      color: #384047 !important
+
+.button-group.round.index_post_nav
+  width: 100%
+  li
+    width: 50%
+    a
+      width: 100%
+
+.index_post_one
+  margin-bottom: 20px
+
+.year, .month
+  width: 10%
+
+.day, .hour, .minute
+  width: 10%
+
+#s2id_post_tag_list, #s2id_post_geolocation_list
+  width: 100%
+
+.post_show_nav
+  text-align: center
+
+
+

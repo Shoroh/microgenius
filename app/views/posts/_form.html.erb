@@ -31,10 +31,9 @@
     </div>
 
     <div class="post_edit_tag_input form-group">
-      <%= f.label :tag_list, 'Теги поста (,)' %>
+      <%= f.label :tag_list, 'Теги поста' %>
       <%= f.text_field :tag_list %>
     </div>
-
 
     <div class="panel panel-default">
       <div class="panel-heading spoiler-btn">
@@ -42,12 +41,26 @@
       </div>
 
       <div id="tag_cloud_edit" class="spoiler-body panel-body tag_cloud">
-        <% tag_cloud Post.tag_counts.sort { |a, b| a.name <=> b.name }, %w{css1 css2 css3 css4} do |tag, css_class| %>
+        <% tag_cloud Post.tag_counts.sort { |a, b| a.name <=> b.name }, %w{css1 css2 css3 css4 css5} do |tag, css_class| %>
             <%= link_to tag.name, "#", class: css_class %>
         <% end %>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-10">
+        <div class="post_edit_tag_input form-group">
+          <%= f.label :geolocation_list, 'Геометки' %>
+          <%= f.text_field :geolocation_list %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <div type="button" id="map-go-button" onclick="codeAddress()" class="btn btn-default" value="Geocode">Пора
+            валить!
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="post_edit_date_pickup form-group">
       <br/>
       <%= f.label :post_date, 'Дата и время публикации' %>
@@ -55,32 +68,68 @@
     </div>
 
     <div class="row">
-      <div class="large-3 columns">
+      <div class="col-md-3 form-group">
         <%= f.label :post_status, 'Публикуем?' %>
-        <%= f.select :post_status, options_for_select(["draft", "publish", "pending"], @post.post_status) %>
+        <%= f.select(:post_status, options_for_select(["draft", "publish", "pending"], @post.post_status), {}, {class: 'form-control'}) %>
       </div>
-      <div class="large-3 columns">
+      <div class="col-md-3 form-group">
         <%= f.label :post_type, 'Тип поста' %>
-        <%= f.text_field :post_type %>
+        <%= f.text_field :post_type, class: 'form-control' %>
       </div>
-      <div class="large-3 columns">
-        <%= f.label :comment_status, 'Разрешить каменты?' %>
-        <%= f.radio_button :comment_status, 'true', checked: @post.comment_status %>
-        <%= f.label :comment_status, "Да", :value => true %>
-        <%= f.radio_button :comment_status, 'false', checked: !@post.comment_status %>
-        <%= f.label :comment_status, "Нет", :value => false %>
+
+      <div class="col-md-3">
+        <div class="checkbox">
+          <%= f.label :retina, 'Картинки для Ретины?' do %>
+              <%= f.check_box :retina, checked: @post.retina, class: 'js-switch' %>
+              Картинки для Ретины?
+          <% end %>
+        </div>
       </div>
-      <div class="large-3 columns">
-        <%= f.label :retina, 'Есть картинки для Ретины?' %>
-        <%= f.radio_button :retina, 'true', checked: @post.retina %>
-        <%= f.label :retina, "Да", :value => true %>
-        <%= f.radio_button :retina, 'false', checked: !@post.retina %>
-        <%= f.label :retina, "Нет", :value => false %>
+      <div class="col-md-3">
+        <div class="checkbox">
+          <%= f.label :comment_status, 'Разрешить каменты?' do %>
+              <%= f.check_box :comment_status, checked: @post.comment_status, class: 'js-switch' %>
+              Разрешить каменты?
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <%= render 'shared/map' %>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :latitude, 'Широта:' %>
+          <%= f.text_field :latitude, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :longitude, 'Долгота:' %>
+          <%= f.text_field :longitude, class: 'form-control' %>
+        </div>
+        <div class="checkbox form-group">
+          <%= f.label :geotag, 'Показать карту в посте?' do %>
+              <%= f.check_box :geotag, checked: @post.geotag, class: 'js-switch' %>
+              Показать карту в посте?
+          <% end %>
+        </div>
+        <div id="infoPanel">
+          <b>Marker status:</b>
+
+          <div id="markerStatus"></div>
+          <b>Current position:</b>
+
+          <div id="info"></div>
+          <b>Closest matching address:</b>
+
+          <div id="address"></div>
+        </div>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit class: 'nice blue radius button' %>
+      <%= f.submit class: 'btn btn-primary' %>
     </div>
 
 <% end %>

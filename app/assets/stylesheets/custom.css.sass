@@ -1,0 +1,194 @@
+// Основные цвета
+$link-color: #717171
+//$theme_color: #39db4b
+$theme_color: rgba(108, 198, 255, 1)
+$min-width: 1170px
+
+=border-radius($radius)
+  -webkit-border-radius: $radius !important
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius !important
+
+.base_img
+  img
+    margin-bottom: 5px
+    margin-top: 5px
+    +border-radius(5px)
+    max-width: 100% !important
+    max-height: 1000px !important
+
+.base_url
+  a
+    text-decoration: underline
+    color: $link-color
+    &:hover
+      text-decoration: underline
+      color: $theme_color
+      outline: none !important
+      cursor: hand
+    &:focus
+      outline: none
+      color: $link-color
+
+// Базовые правила
+
+body
+  @extend .base_url
+
+//.container-fluid
+//  margin-left: 60px
+//  min-width: $min-width
+
+.index_post_single
+  margin-bottom: 40px
+
+.index_post_body
+  @extend .base_img
+
+.index_post
+  small
+    color: $link-color
+  h1
+    font: 26px/118% "Helvetica Neue", Helvetica, Arial, sans-serif
+    margin-top: 0px
+
+.fotorama
+  @extend .base_img
+  max-width: 1000px
+
+#stripe
+  position: relative
+  height: 8px
+  top: -4px
+  border-radius: 4px
+  background: $theme_color
+  overflow: hidden
+
+// Меню
+nav
+  li
+    a
+      &:hover, &:focus
+        border: none
+        background-color: #ffffff !important
+        text-decoration: underline !important
+
+.menu_item_active
+  a
+    color: $theme_color !important
+    border: none
+    background-color: #ffffff
+    text-decoration: none !important
+
+.header
+  margin-bottom: 30px
+  h3
+    margin-top: 0
+    margin-bottom: 0
+    line-height: 40px
+    @extend .base_url
+    a
+      text-decoration: none
+
+.tag_cloud
+  line-height: 2em
+  .css1
+    color: #cccccc
+    font-size: 1.0em
+  .css2
+    color: #aaaaaa
+    font-size: 1.2em
+  .css3
+    color: #999999
+    font-size: 1.4em
+  .css4
+    color: #666666
+    font-size: 1.6em
+  .css5
+    color: #333333
+    font-size: 1.8em
+
+.select2-search-choice
+  margin: 5px 0px 3px 5px !important
+
+.index_sidebar
+  min-height: 20px
+  padding: 19px
+  margin-bottom: 20px
+  background-color: #ffffff
+  border: 1px dashed $theme_color
+  border-radius: 4px
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset
+  li
+    list-style-type: none
+    @extend .base_url
+    margin-bottom: 5px
+    a
+      padding: 0
+      &:hover
+        background-color: #ffffff
+  li.active
+    a
+      color: $theme_color
+      text-decoration: none
+  ul
+    padding: 0
+
+.affix
+  top: 10px
+
+.one_post
+  p
+    margin-top: 10px
+    max-width: 1000px
+  @extend .base_img
+
+blockquote
+  max-width: 1000px
+  padding: 10px 20px
+  margin: 0 0 0 40px
+  font-size: 14px
+  border-left: 5px solid $theme_color
+  font-style: italic
+
+.sup_retina
+  color: orchid
+  position: relative
+  top: -10px
+  left: 10px
+  font-size: small
+  margin-right: 10px
+
+.footer
+  padding: 15px
+  height: 50px
+  color: #ffffff
+  background-color: $theme_color
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  a
+    color: #ffffff
+    text-decoration: none
+    &:hover
+      text-shadow: 0px 0px 10px #fff
+      color: #ffffff
+
+.center
+  text-align: center
+  margin-bottom: 0
+
+.page_arrows
+  margin-bottom: 10px
+
+.checkbox
+  cursor: hand
+
+.container_for_social
+  text-align: center
+  max-width: 1000px
+  margin-bottom: 40px
+  margin-top: 40px
+
+iframe
+  max-width: 100%

@@ -12,41 +12,23 @@
  *= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/stylesheets/bootstrap.scss
  *= require select2
  *= require_tree .
+ *= require switchery.min
+ *= require social-likes_flat
  */
-@import 'foundation-icons';
-
-.container {
-  max-width: 1030px;
-  min-width: 1030px;
-}
-
-.header {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #e5e5e5;
-  h3 {
-    padding-bottom: 19px;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-  }
-}
 
 body {
-  padding-top: 20px;
+  position: relative;
+}
+
+.container {
+  //max-width: 1030px;
+  //min-width: 1030px;
 }
 
 .sidebar {
   p {
     text-align: center;
   }
-}
-
-.footer {
-  padding: 40px 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
 }
 
 .next {
