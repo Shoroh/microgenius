@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Ocean" />
+  <component name="PublishConfigData" serverName="Ocean">
+    <serverData>
+      <paths name="Ocean">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/app" local="$PROJECT_DIR$" web="/microgenius" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/tmp" />
+            <excludedPath local="true" path="$PROJECT_DIR$/test" />
+            <excludedPath local="true" path="$PROJECT_DIR$/log" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>
 

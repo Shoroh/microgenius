@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/stylesheets/bootstrap.scss
+ *= require bootstrap.scss
  *= require select2
  *= require_tree .
  *= require switchery.min

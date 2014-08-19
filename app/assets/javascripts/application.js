@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require /Users/microgenius/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/javascripts/bootstrap.js
+//= require bootstrap.js
 //= require gmaps/google
 //= require underscore
 //= require ckeditor/override

@@ -10,6 +10,16 @@ development:
   pool: 5
   username: shelestov
   password: 23111978
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: d2o53ntkmc26jm
+  username: ueugcnosnlxnmp
+  password: 2l1zYza8eBd-81KOKyIvBchwdo
+  host: ec2-54-197-237-171.compute-1.amazonaws.com
+  port: 5432
   
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
